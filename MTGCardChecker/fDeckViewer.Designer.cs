@@ -31,17 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fDeckViewer));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbDeck = new System.Windows.Forms.ListBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblCardName = new System.Windows.Forms.Label();
-            this.lblCost = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblText = new System.Windows.Forms.Label();
+            this.lblCost = new System.Windows.Forms.Label();
+            this.lblCardName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -72,6 +72,16 @@
             this.lbDeck.TabIndex = 0;
             this.lbDeck.SelectedIndexChanged += new System.EventHandler(this.lbDeck_SelectedIndexChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(251, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(279, 450);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblText);
@@ -85,15 +95,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
             // 
-            // pictureBox1
+            // lblText
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(251, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(279, 450);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.lblText.AutoSize = true;
+            this.lblText.Location = new System.Drawing.Point(6, 42);
+            this.lblText.MaximumSize = new System.Drawing.Size(200, 0);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(0, 13);
+            this.lblText.TabIndex = 1;
+            // 
+            // lblCost
+            // 
+            this.lblCost.AutoSize = true;
+            this.lblCost.Location = new System.Drawing.Point(6, 29);
+            this.lblCost.Name = "lblCost";
+            this.lblCost.Size = new System.Drawing.Size(0, 13);
+            this.lblCost.TabIndex = 0;
             // 
             // lblCardName
             // 
@@ -104,23 +121,6 @@
             this.lblCardName.Size = new System.Drawing.Size(0, 13);
             this.lblCardName.TabIndex = 0;
             // 
-            // lblCost
-            // 
-            this.lblCost.AutoSize = true;
-            this.lblCost.Location = new System.Drawing.Point(6, 29);
-            this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(0, 13);
-            this.lblCost.TabIndex = 0;
-            // 
-            // lblText
-            // 
-            this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(6, 42);
-            this.lblText.MaximumSize = new System.Drawing.Size(200, 0);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(0, 13);
-            this.lblText.TabIndex = 1;
-            // 
             // fDeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,15 +129,16 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fDeckViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "fDeckViewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fDeckViewer_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
