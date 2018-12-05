@@ -84,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -98,6 +99,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\W.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\G.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\R.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\U.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\X.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

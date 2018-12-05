@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,15 +39,59 @@ namespace MTGCardChecker
         {
             return data.Substring(data.IndexOf(' ') + 1, data.Length - data.IndexOf(' ') - 1);
         }
+        public Image getImageToText(string text)
+        {
+            switch(text)
+            {
+                case "{W}":
+                    return Properties.Resources.W;
+                case "{U}":
+                    return Properties.Resources.U;
+                case "{B}":
+                    return Properties.Resources.B;
+                case "{G}":
+                    return Properties.Resources.G;
+                case "{R}":
+                    return Properties.Resources.R;
+                case "{X}":
+                    return Properties.Resources.X;
+                case "{0}":
+                    return Properties.Resources._0;
+                case "{1}":
+                    return Properties.Resources._1;
+                case "{2}":
+                    return Properties.Resources._2;
+                case "{3}":
+                    return Properties.Resources._3;
+                case "{4}":
+                    return Properties.Resources._4;
+                default:
+                    return Properties.Resources._0;
+            }
+        }
         private void lbDeck_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!delete)
             {
                 string holdName = lbDeck.SelectedItem.ToString().Substring(lbDeck.SelectedItem.ToString().IndexOf(' ')+1, lbDeck.SelectedItem.ToString().Length - lbDeck.SelectedItem.ToString().IndexOf(' ')-1).Replace(' ', '_');
-                pictureBox1.Image = Image.FromFile(fMain.rootPath + holdName + ".png");
+                cardImage.Image = Image.FromFile(fMain.rootPath + holdName + ".png");
                 Card card = lDeck.Find(x => x.cardName == holdName.Replace('_',' '));
                 lblCardName.Text = card.cardName;
-                lblCost.Text = card.cost;
+                foreach(Control c in groupBox1.Controls)
+                {
+                    if(c is PictureBox)
+                    {
+                        (c as PictureBox).Image = null;
+                    }
+                }
+                var m1 = Regex.Matches(card.cost, @"{(.*?)}");
+                int count = 1;
+                foreach(Match m in m1)
+                {
+                    (groupBox1.Controls.Find("pictureBox" + count, false)[0] as PictureBox).Image = getImageToText(m.Value);
+                    count++;
+                }
+                count = 1;
                 lblText.Text = card.text;
 
                 switch(lDeck.Find(x => x.cardName == holdName.Replace('_', ' ')).GetType().Name)
@@ -62,7 +107,7 @@ namespace MTGCardChecker
             delete = true;
             lDeck.Remove(lDeck.Find(x => x.cardName == getCardNameFromListBox(lbDeck.Items[_selectedMenuItem].ToString())));
             lbDeck.Items.RemoveAt(_selectedMenuItem);
-            pictureBox1.Image = null;
+            cardImage.Image = null;
             foreach(Control c in this.groupBox1.Controls)
             {
                 if(c is Label)
@@ -86,7 +131,7 @@ namespace MTGCardChecker
         }
         private void fDeckViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            pictureBox1.Dispose();
+            cardImage.Dispose();
         }
     }
 }
