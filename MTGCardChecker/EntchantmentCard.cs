@@ -8,11 +8,8 @@ namespace MTGCardChecker
 {
     class EntchantmentCard : Card
     {
-        public EntchantmentCard(string _cardName, string _cost, string _text, int _amountInDeck)
+        public EntchantmentCard(int _amountInDeck)
         {
-            cardName = _cardName;
-            cost = _cost;
-            text = _text;
             amountInDeck = _amountInDeck;
         }
     }

@@ -55,25 +55,25 @@ namespace MTGCardChecker
                 dynamic result = JObject.Parse(response);
                 currentCard = result;
                 setCardDetails(result);
-                pictureBox1.Image = Image.FromFile(getImage(result.image_uris.large.ToString(), cardName, result));
+                pictureBox1.Image = Image.FromFile(getImage(result.image_uris.large.ToString()));
             }
             catch (HttpRequestException wexc)
             {
                 tbxSearchName.Text = wexc.Message;
             }
         }
-        public string getImage(string url, string cardName, dynamic data)
+        public string getImage(string url)
         {
             if (!Directory.Exists(rootPath))
             {
                 Directory.CreateDirectory(rootPath);
             }
-            string path = rootPath + cardName.Replace(' ', '_') + ".png";
+            string path = rootPath + currentCard.name.ToString().Replace(' ', '_') + ".png";
             using (WebClient client = new WebClient())
             {
                 client.DownloadFile(new Uri(url), path);
             }
-            File.WriteAllText(rootPath + cardName.Replace(' ', '_') + ".json", data.ToString());
+            File.WriteAllText(rootPath + currentCard.name.ToString().Replace(' ', '_') + ".json", currentCard.ToString());
             return path;
         }
         private async void getCardNames(string cardName)
@@ -212,13 +212,19 @@ namespace MTGCardChecker
                     deck.Add(new PlaneswalkerCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, loyalty, (int)numericUpDown1.Value));
                     break;
                 case cardType.SORCERY:
-                    deck.Add(new SorceryCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, (int)numericUpDown1.Value));
+                    SorceryCard sorceryCard = new SorceryCard((int)numericUpDown1.Value);
+                    sorceryCard.build(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text);
+                    deck.Add(sorceryCard);
                     break;
                 case cardType.LAND:
-                    deck.Add(new LandCard(lvCardDetails.Items[0].SubItems[1].Text, text, (int)numericUpDown1.Value));
+                    LandCard landCard = new LandCard((int)numericUpDown1.Value);
+                    landCard.build(lvCardDetails.Items[0].SubItems[1].Text, "-", text);
+                    deck.Add(landCard);
                     break;
                 case cardType.ENTCHANTMENT:
-                    deck.Add(new EntchantmentCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, (int)numericUpDown1.Value));
+                    EntchantmentCard entchantmentCard = new EntchantmentCard((int)numericUpDown1.Value);
+                    entchantmentCard.build(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text);
+                    deck.Add(entchantmentCard);
                     break;
                 default:
                     break;

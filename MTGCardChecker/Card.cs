@@ -12,5 +12,11 @@ namespace MTGCardChecker
         public string cost { get; set; }
         public string text { get; set; }
         public int amountInDeck { get; set; } = 0;
+        public void build(string _name, string _cost, string _text)
+        {
+            cardName = _name;
+            cost = _cost;
+            text = _text;
+        }
     }
 }
