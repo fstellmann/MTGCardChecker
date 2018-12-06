@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTGCardChecker
 {
-    class LandCard :Card
+    public class LandCard :Card
     {
         public LandCard(int _amountInDeck)
         {

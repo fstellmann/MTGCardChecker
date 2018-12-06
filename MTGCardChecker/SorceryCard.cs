@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTGCardChecker
 {
-    class SorceryCard: Card
+    public class SorceryCard: Card
     {
         public SorceryCard( int _amountInDeck)
         {

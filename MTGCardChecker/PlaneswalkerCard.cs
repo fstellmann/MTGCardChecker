@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTGCardChecker
 {
-    class PlaneswalkerCard : Card
+    public class PlaneswalkerCard : Card
     {
         public int loyalty { get; set; }
 
