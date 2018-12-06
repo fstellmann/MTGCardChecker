@@ -30,6 +30,7 @@ namespace MTGCardChecker
         public static List<Card> deck = new List<Card>();
         public static readonly string rootPath = @"C://temp/mtg_img_lib/";
         cardType currentType = cardType.NONE;
+        private static dynamic currentCard;
         public fMain()
         {
             InitializeComponent();
@@ -52,6 +53,7 @@ namespace MTGCardChecker
             {
                 var response = await client.GetStringAsync(apiUrl);
                 dynamic result = JObject.Parse(response);
+                currentCard = result;
                 setCardDetails(result);
                 pictureBox1.Image = Image.FromFile(getImage(result.image_uris.large.ToString(), cardName, result));
             }
@@ -204,7 +206,7 @@ namespace MTGCardChecker
                     {
                         if (lvi.SubItems[0].Text == "Loyalty")
                         {
-                            power = Convert.ToInt32(lvi.SubItems[1].Text);
+                            loyalty = Convert.ToInt32(lvi.SubItems[1].Text);
                         }
                     }
                     deck.Add(new PlaneswalkerCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, loyalty, (int)numericUpDown1.Value));
@@ -234,7 +236,14 @@ namespace MTGCardChecker
         {
             if(currentType != cardType.LAND)
             {
-                numericUpDown1.Maximum = 4;
+                if (currentCard.legalities.vintage == "restricted")
+                {
+                    numericUpDown1.Maximum = 1;
+                }
+                else
+                {
+                    numericUpDown1.Maximum = 4;
+                }
             }
             else
             {
@@ -247,5 +256,11 @@ namespace MTGCardChecker
             cleanUpTMP();
         }
         #endregion
+
+        private void btnStat_Click(object sender, EventArgs e)
+        {
+            fStatistics fStat = new fStatistics(deck);
+            fStat.ShowDialog();
+        }
     }
 }

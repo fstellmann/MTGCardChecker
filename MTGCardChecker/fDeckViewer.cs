@@ -65,6 +65,10 @@ namespace MTGCardChecker
                     return Properties.Resources._3;
                 case "{4}":
                     return Properties.Resources._4;
+                case "{5}":
+                    return Properties.Resources._5;
+                case "{6}":
+                    return Properties.Resources._6;
                 default:
                     return Properties.Resources._0;
             }
@@ -93,10 +97,26 @@ namespace MTGCardChecker
                 }
                 count = 1;
                 lblText.Text = card.text;
-
-                switch(lDeck.Find(x => x.cardName == holdName.Replace('_', ' ')).GetType().Name)
+                lblPower.Text = "";
+                lblLoyalty.Text = "";
+                switch (lDeck.Find(x => x.cardName == holdName.Replace('_', ' ')).GetType().Name)
                 {
                     case "PlaneswalkerCard":
+                        lblLoyalty.ForeColor = Color.White;
+                        pbLoyalty.Image = Properties.Resources.Loyalty;
+                        lblLoyalty.Text = (card as PlaneswalkerCard).loyalty.ToString();
+                        lblLoyalty.BringToFront();
+                        break;
+                    case "CreatureCard":
+                        lblPower.Text = (card as CreatureCard).power.ToString() +"/" +(card as CreatureCard).toughness.ToString();
+                        break;
+                    case "LandCard":
+                        break;
+                    case "EntchantmentCard":
+                        break;
+                    case "InstantCard":
+                        break;
+                    case "SorceryCard":
                         break;
                 }
             }

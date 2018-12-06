@@ -38,6 +38,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,12 +71,21 @@
     <Compile Include="PlaneswalkerCard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="fStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fStatistics.Designer.cs">
+      <DependentUpon>fStatistics.cs</DependentUpon>
+    </Compile>
     <Compile Include="SorceryCard.cs" />
     <EmbeddedResource Include="fDeckViewer.resx">
       <DependentUpon>fDeckViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fStatistics.resx">
+      <DependentUpon>fStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,12 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\W.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\icons\W.svg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icons\W.png" />
@@ -138,6 +143,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icons\X.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icons\Loyalty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
