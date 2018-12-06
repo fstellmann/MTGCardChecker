@@ -34,19 +34,12 @@ namespace MTGCardChecker
             chart1.Series.Add(seriesname);
             chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
 
-            int lands = lData.Where(x => x.GetType().Name.Equals("LandCard")).Sum(x => x.amountInDeck);
-            int creat = lData.Where(x => x.GetType().Name.Equals("CreatureCard")).Sum(x => x.amountInDeck);
-            int inst = lData.Where(x => x.GetType().Name.Equals("InstantCard")).Sum(x => x.amountInDeck);
-            int sorc = lData.Where(x => x.GetType().Name.Equals("SorceryCard")).Sum(x => x.amountInDeck);
-            int entchant = lData.Where(x => x.GetType().Name.Equals("EntchantmentCard")).Sum(x => x.amountInDeck);
-            int planewalker = lData.Where(x => x.GetType().Name.Equals("PlaneswalkerCard")).Sum(x => x.amountInDeck);
-
-            if(lands > 0) chart1.Series[seriesname].Points.AddXY(lands + " Lands", lands);
-            if (creat > 0) chart1.Series[seriesname].Points.AddXY(creat + " Creatures", creat);
-            if (inst > 0) chart1.Series[seriesname].Points.AddXY(inst + " Instants", inst);
-            if (sorc > 0) chart1.Series[seriesname].Points.AddXY(sorc + " Sorceries", sorc);
-            if (entchant > 0) chart1.Series[seriesname].Points.AddXY(entchant + " Entchantments", entchant);
-            if (planewalker > 0) chart1.Series[seriesname].Points.AddXY(planewalker + " Planewalkers", planewalker);           
+            if (lData.Where(x => x.GetType().Name.Equals("LandCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Lands", lData.Where(x => x.GetType().Name.Equals("LandCard")).Sum(x => x.amountInDeck));
+            if (lData.Where(x => x.GetType().Name.Equals("CreatureCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Creatures", lData.Where(x => x.GetType().Name.Equals("CreatureCard")).Sum(x => x.amountInDeck));
+            if (lData.Where(x => x.GetType().Name.Equals("InstantCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Instants", lData.Where(x => x.GetType().Name.Equals("InstantCard")).Sum(x => x.amountInDeck));
+            if (lData.Where(x => x.GetType().Name.Equals("SorceryCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Sorceries", lData.Where(x => x.GetType().Name.Equals("SorceryCard")).Sum(x => x.amountInDeck));
+            if (lData.Where(x => x.GetType().Name.Equals("EntchantmentCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Entchantments", lData.Where(x => x.GetType().Name.Equals("EntchantmentCard")).Sum(x => x.amountInDeck));
+            if (lData.Where(x => x.GetType().Name.Equals("PlaneswalkerCard")).Sum(x => x.amountInDeck) > 0) chart1.Series[seriesname].Points.AddXY("Planewalkers", lData.Where(x => x.GetType().Name.Equals("PlaneswalkerCard")).Sum(x => x.amountInDeck));
         }
     }
 }

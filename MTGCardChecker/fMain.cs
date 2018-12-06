@@ -236,14 +236,7 @@ namespace MTGCardChecker
         {
             if(currentType != cardType.LAND)
             {
-                if (currentCard.legalities.vintage == "restricted")
-                {
-                    numericUpDown1.Maximum = 1;
-                }
-                else
-                {
-                    numericUpDown1.Maximum = 4;
-                }
+                numericUpDown1.Maximum = currentCard.legalities.vintage.Equals("restricted") ? 1 : 4;
             }
             else
             {
@@ -254,13 +247,12 @@ namespace MTGCardChecker
         {
             pictureBox1.Dispose();
             cleanUpTMP();
-        }
-        #endregion
-
+        }      
         private void btnStat_Click(object sender, EventArgs e)
         {
             fStatistics fStat = new fStatistics(deck);
             fStat.ShowDialog();
         }
+        #endregion
     }
 }
