@@ -195,10 +195,14 @@ namespace MTGCardChecker
                             toughness = Convert.ToInt32(lvi.SubItems[1].Text);
                         }
                     }
-                    deck.Add(new CreatureCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, power, toughness, (int)numericUpDown1.Value));
+                    CreatureCard creatureCard = new CreatureCard(power, toughness, (int)numericUpDown1.Value);
+                    creatureCard.build(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text);
+                    deck.Add(creatureCard);
                     break;
                 case cardType.INSTANT:
-                    deck.Add(new InstantCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, (int)numericUpDown1.Value));
+                    InstantCard instantCard = new InstantCard((int)numericUpDown1.Value);
+                    instantCard.build(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text);
+                    deck.Add(instantCard);
                     break;
                 case cardType.PLANESWALKER:
                     int loyalty = 0;
@@ -209,7 +213,9 @@ namespace MTGCardChecker
                             loyalty = Convert.ToInt32(lvi.SubItems[1].Text);
                         }
                     }
-                    deck.Add(new PlaneswalkerCard(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text, loyalty, (int)numericUpDown1.Value));
+                    PlaneswalkerCard planeswalkerCard = new PlaneswalkerCard(loyalty, (int)numericUpDown1.Value);
+                    planeswalkerCard.build(lvCardDetails.Items[0].SubItems[1].Text, lvCardDetails.Items[1].SubItems[1].Text, text);
+                    deck.Add(planeswalkerCard);
                     break;
                 case cardType.SORCERY:
                     SorceryCard sorceryCard = new SorceryCard((int)numericUpDown1.Value);

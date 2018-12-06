@@ -11,11 +11,8 @@ namespace MTGCardChecker
         public int power { get; set; }
         public int toughness { get; set; }
 
-        public CreatureCard(string _cardName, string _cost, string _text, int _power, int _toughness, int _amountInDeck)
+        public CreatureCard( int _power, int _toughness, int _amountInDeck)
         {
-            cardName = _cardName;
-            cost = _cost;
-            text = _text;
             power = _power;
             toughness = _toughness;
             amountInDeck = _amountInDeck;
